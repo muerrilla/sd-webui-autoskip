@@ -1,0 +1,35 @@
+#autoskip span {
+  margin-bottom: 0 !important;
+  font-size: var(--section-header-text-size);
+  min-width: fit-content;
+}
+
+#autoskip input[type=number] {
+  padding: 4px 12px !important;
+}
+
+#autoskip button {
+  min-width: 30px;
+  max-width: 30px;
+  min-height: fit-content;
+  font-weight: var(--button-large-text-weight);
+  border-radius: 0.5em;
+  border-width: 1px;
+}
+
+#autoskip .gradio-row {
+  align-items: center;
+  gap: 0.5em;
+}
+
+#autoskip .gradio-checkbox {
+  margin: 0;
+}
+
+#autoskip .form {
+  min-width: unset !important;
+}
+
+#autoskip-slider {
+  padding: 0 10px !important;
+}
