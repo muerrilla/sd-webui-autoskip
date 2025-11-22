@@ -1,5 +1,5 @@
 # sd-webui-autoskip
- Extension for SD WebUI (A1111, Forge, Neo, etc.) to allow skipping mid-generation
+ Extension for SD WebUI (A1111, Forge, Neo, etc.) for automatically skipping generation at the defined step.
 ## Installation
 Open WebUI > Go to Install from URL tab > Paste this repo's URL into the first field > Click Install
 
