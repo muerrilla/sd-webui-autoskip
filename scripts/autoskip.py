@@ -19,10 +19,10 @@ class Script(scripts.Script):
         with gr.Accordion("autoSkip", open=True, elem_id="autoskip"):                                                          
             with gr.Row(equal_height=True):
                 with gr.Column(scale=100):
-                    autoskip_slider = gr.Slider(minimum=0.00, maximum=1.00, step=.05, value=0.00, label="autoSkip", interactive=True, elem_id="autoskip-slider")
+                    autoskip_slider = gr.Slider(minimum=0.00, maximum=1.00, step=.05, value=0.00, label="Skip", interactive=True, elem_id="autoskip-slider")
                 with gr.Column(scale=1, min_width=120):
                     with gr.Row():
-                        autoskip_input = gr.Number(value=0.00, precision=4, label="autoSkip", show_label=False, elem_id="autoskip-number")   
+                        autoskip_input = gr.Number(value=0.00, precision=4, label="Skip", show_label=False, elem_id="autoskip-number")   
                         reset_but = gr.Button(value='✕', elem_id='autoskip-x', size='sm')           
 
             js = """(v) => {
@@ -36,7 +36,7 @@ class Script(scripts.Script):
             }"""
                
             autoskip_input.change(None, [autoskip_input], autoskip_slider, _js=js)
-            autoskip_slider.change(None, autoskip_slider, autoskip_input, _js="(x) => x")
+            autoskip_slider.release(None, autoskip_slider, autoskip_input, _js="(x) => x")
             reset_but.click(None, [], [autoskip_input,autoskip_slider], _js="(x) => [0,0]")
 
         self.infotext_fields = []        
@@ -76,7 +76,7 @@ class Script(scripts.Script):
             # tqdm.write('autoSkip callback removed') 
 
     def denoise_callback(self, params):    
-        tqdm.write(f"Actual Step: {self.counter}")
+        # tqdm.write(f"Actual Step: {self.counter}")
         if self.autoskip is not None and self.counter >= (1 - self.autoskip) * state.sampling_steps:
             tqdm.write(f"\033[95mINFO:\033[0m Skipped at step {self.counter}")
             self.counter = 0
@@ -87,4 +87,4 @@ class Script(scripts.Script):
         if value == 0:
             return
         color_code = '\033[95m'   
-        print(f"\n{color_code}ATTENTION:\033[0m autoSkip is set to {value}")            
+        tqdm.write(f"\n{color_code}ATTENTION:\033[0m autoSkip is set to {value}")            
